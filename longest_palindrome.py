@@ -30,8 +30,9 @@ def longest_palindrome (str ) :
 			end = index + plen  - 1
 			if tt[index + 1][ end - 1] and l[index] == l[end] :
 				tt[index][end] = 1 
-				start = index
-				max_len = plen
+				if plen > max_len:
+					start = index
+					max_len = plen
 			index += 1	
 		plen += 1
 	
