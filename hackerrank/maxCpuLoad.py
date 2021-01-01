@@ -22,25 +22,21 @@ def find_max_cpu_load (jobs ) :
 	if len(jobs) == 0 :
 		return -1 
 
-	heappush(hq,jobs[0])
+	jobs.sort(key=lambda x : x.start) 
 	max_cpu = 0
-	cpu = hq[0].cpu_load
-	for i in range (1, len(jobs)) :		
-		prev = hq[0]
+	cpu = 0 
+	for i in range (len(jobs)) :		
 		cur = jobs[i] 
-		if prev.end > cur.start :
-			heappush(hq, jobs[i]) 
-			cpu += cur.cpu_load
-			if cpu >= max_cpu:
-				max_cpu = cpu
-		else :
+		# remove all the events that have ended
+		while (len(hq) > 0 and hq[0].end <  cur.start) :
 			v = hq.pop(0) 		
-			while (v.end < cur.start) :
-				cpu -= v.cpu_load
-				if len(hq) <= 0 :
-					break	
-				v = hq.pop(0) 		
-				
+			cpu -= v.cpu_load
+	
+		heappush(hq, cur) 
+		cpu += cur.cpu_load
+		if cpu >= max_cpu:
+			max_cpu = cpu
+			
 		
 	return max_cpu			
 		

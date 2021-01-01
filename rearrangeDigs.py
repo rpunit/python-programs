@@ -1,5 +1,5 @@
 import functools
-
+# Rearrage the array so that the output when written as string will give you max int
 def comparator(a, b): 
     ab = str(a) + str(b) 
     ba = str(b) + str(a) 

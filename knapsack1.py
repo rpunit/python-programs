@@ -33,7 +33,7 @@ def knapsack (items, rem_time, index) :
   # if the time of current time is > rem_time, it cannot 
   # be included, exclude it
   if items[index].time > rem_time :
-    return knapsack(items, rem_time, index+11)
+    return knapsack(items, rem_time, index+1)
 
   # Include the rlen - 1 item
   sack1 = knapsack(items, rem_time - items[index].time, index+1)

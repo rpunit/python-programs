@@ -13,7 +13,7 @@ def combo  (arr, n, start, res) :
 		i = i + 1 
 
 
-arr = [1,2,3,4,5,6,7,8,9]
-n = 3
+arr = "abcde" 
+n = 2
 res = [0]* n
 combo (arr, n, 0 , res )

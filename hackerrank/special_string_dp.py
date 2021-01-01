@@ -2,7 +2,7 @@
 
 arr = []
 
-def ss( s, n) :
+def substrCount( n, s) :
 	memo = [ [0 for i in range(n) ] for j in range(n)]
 	for i in range (n) :
 		memo[i][i] = 1
@@ -28,10 +28,16 @@ def ss( s, n) :
 		plen += 1
 	#print(memo)
 			
-					
-s = "abcdddeffaffg"
-#s = "abcbaba"
-ss(s, len(s))
-print(s)
-print(arr)
-print(len(arr))
+				
+
+if __name__ == '__main__':
+
+	n = int(input())
+
+	s = input()
+
+	result = substrCount(n, s)
+
+	print(str(result) + '\n')
+
+	

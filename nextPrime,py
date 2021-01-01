@@ -1,0 +1,23 @@
+primes = [2,3,5,7]
+def getNextPrime(n) :
+	if n-1 < len(primes) :
+		return primes[n-1]
+	i = len(primes) -1
+	p = primes[i] + 1
+	while  len(primes) <= n-1 :
+		for j in range (len(primes)) :
+			if p % primes[j] == 0 :
+				break
+		if j == len(primes)-1 :
+			print ("found ", p)
+			primes.append(p)
+		p +=1
+	return primes[n-1]
+
+print(getNextPrime(4))
+print(primes)
+print(getNextPrime(8))
+print(primes)
+print(getNextPrime(11))
+print(primes)
+

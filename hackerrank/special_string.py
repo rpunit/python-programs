@@ -1,23 +1,49 @@
 
 
+arr = []
 
-arr  = []
-def is_palin (s) :
-	n = len(s) //2
-	for i in range(n) :
-		if s[i] != s[len(s) - i -1] or s[i] != s[0]:
-			return False
-	return True
+def substrCount( n, s) :
+	tups = []
+	prev = None 
+		
+	count = 1
+	for i in range(len(s)) :
+		cur = s[i]
+		if prev != None :
+			if cur != prev : 
+				tups.append((prev, count))
+				count = 1
+			else :
+				count += 1
+		prev = cur
+	tups.append((cur,count))
+	print (tups)
+	sscount = 0	
+	# second pass
+	for a,c in  tups :
+		# for aaa the values are :   a a a   +  aa,aa + aaaa ( 3 + 2 + 1)
+		sscount += c*(c+1)//2
 
-def ss( s, n) :
-	for i in range (0, n ) :
-		for j in range (i, n) :
-			if is_palin(s[i : j + 1] ):
-				arr.append(s[i : j + 1])
-					
-s = "abcdddeffaffg"
-s = "abcbaba"
-ss(s, len(s))
-print(s)
-print(arr)
-print(len(arr))
+	# third pass for special case
+	for i in range (1, len(tups)-1) :
+		if tups[i-1][0] == tups[i+1][0] and tups[i][1] == 1:
+			sscount += min (	tups[i-1][1], tups[i+1][1] )
+
+	return sscount
+
+
+		
+		
+			
+
+if __name__ == '__main__':
+
+	n = int(input())
+
+	s = input()
+
+	result = substrCount(n, s)
+
+	print(str(result) + '\n')
+
+	
